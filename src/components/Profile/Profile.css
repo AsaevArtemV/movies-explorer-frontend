@@ -1,0 +1,135 @@
+.edit-profile {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 74px 0 70px;
+  background-color: #202020;
+}
+
+.profile__title {
+  font-size: 24px;
+  line-height: normal;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0 106px;
+  color: #FFF;
+}
+
+.edit-profile__form {
+  width: 410px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-profile__field {
+  width: 100%;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 17px 0 16px;
+  margin: 0;
+}
+
+.edit-profile__field:first-of-type {
+  border-bottom: 1px solid #424242;
+}
+
+.edit-profile__label {
+  width: 50px;
+  font-size: 11px;
+  line-height: normal;
+  font-weight: 500;
+  text-align: left;
+  color: #FFF;
+}
+
+.edit-profile__input {
+  width: 100%;
+  border: none;
+  padding: 0;
+  font-size: 11px;
+  line-height: normal;
+  font-weight: 400;
+  text-align: right;
+  color: #FFF;
+  background-color: #202020;
+}
+
+.edit-profile__input:focus {
+  border: none;
+  outline: none;
+}
+
+.edit-profile__btn {
+  height: 16px;
+  border: none;
+  font-size: 13px;
+  line-height: normal;
+  font-weight: 400;
+  margin-top: 206px;
+  padding: 0;
+  cursor: pointer;
+  color: #FFF;
+  background-color: #202020;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.edit-profile__btn:hover {
+  opacity: 0.7;
+}
+
+.profile__link-exit {
+  font-size: 13px;
+  line-height: normal;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 16px;
+  color: #EE3465;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.profile__link-exit:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 769px) {
+  .profile__title {
+    margin: 0 0 80px;
+  }
+
+  .edit-profile {
+    padding: 236px 0 268px;
+  }
+
+  .edit-profile__btn {
+    margin-top: 196px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .edit-profile {
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
+
+  .profile__title {
+    margin-bottom: 64px;
+  }
+
+  .edit-profile__form {
+    width: 260px;
+  }
+
+  .edit-profile__btn {
+    font-size: 12px;
+    margin-top: 365px;
+  }
+
+  .profile__link-exit {
+    font-size: 12px;
+  }
+}

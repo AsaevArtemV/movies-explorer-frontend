@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 18px 70px;
+  background: #073042;
+}
+
+.header_profile {
+  background-color: #202020;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.header__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 769px) {
+  .header_wrapper {
+    padding: 18px 30px;
+  }
+
+  .header_profile {
+    padding: 17px 38px 18px 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header_wrapper {
+    padding: 18px 14px;
+  }
+
+  .header_profile {
+    padding: 18px 22px 18px 14px;
+  }
+}

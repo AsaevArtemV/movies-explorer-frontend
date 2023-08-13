@@ -1,0 +1,173 @@
+.about-project {
+  display: flex;
+  flex-direction: column;
+  padding: 110px 70px;
+  background: #202020;
+}
+
+.project__title {
+  width: 100%;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.88px;
+  margin: 0 0 70px;
+  padding-bottom: 23px;
+  color: #FFF;
+  border-bottom: 1px solid #DADADA;
+}
+
+.project__info {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.project__chapter {
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.project__subtitle {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: normal;
+  letter-spacing: -0.8px;
+  color: #FFF;
+  margin: 0;
+}
+
+.project__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFF;
+  margin: 0;
+}
+
+.project__time {
+  display: flex;
+  margin: 110px 0 0;
+}
+
+.project__back-end {
+  width: 20%;
+}
+
+.project__limited {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  height: 36px;
+  padding: 10px 0;
+}
+
+.project__limited_back-end {
+  color: #000;
+  background: #3DDC84;
+}
+
+.project__front-end {
+  width: 80%;
+}
+
+.project__limited_front-end {
+  color: #FFF;
+  background: #303030;
+}
+
+.project__technologie {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin: 14px 0 0;
+  color: #8B8B8B;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    padding: 91px 50px;
+  }
+
+  .project__info {
+    gap: 30px;
+  }
+
+  .project__chapter {
+    gap: 20px;
+  }
+
+  .project__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .project__time {
+    margin: 93px 0 0;
+  }
+
+  .project__back-end {
+    width: 21%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .about-project {
+    padding: 71px 18px;
+  }
+
+  .project__back-end {
+    width: 43%;
+  }
+
+  .project__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 61px;
+    padding-bottom: 27px;
+    letter-spacing: -0.72px;
+  }
+
+  .project__info {
+    flex-direction: column;
+    align-items: center;
+    gap: 57px;
+  }
+
+  .project__chapter {
+    width: 284px;
+    gap: 15px;
+  }
+
+  .project__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.72px;
+  }
+
+  .project__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .project__time {
+    margin-top: 60px;
+  }
+
+  .project__limited {
+    height: 36px;
+    font-size: 11px;
+    line-height: 14px;
+    padding: 12px 0;
+  }
+
+  .project__technologie {
+    font-size: 11px;
+    line-height: 13px;
+    margin-top: 10px;
+  }
+}
