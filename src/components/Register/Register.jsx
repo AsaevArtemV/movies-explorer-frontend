@@ -1,7 +1,6 @@
+import { Link } from "react-router-dom";
 import "./Register.css";
 import logo from "../../images/logo.svg";
-
-import { Link } from "react-router-dom";
 
 function Register() {
   return (

@@ -16,7 +16,10 @@ function AboutMe() {
             в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься
             фриланс-заказами и ушёл с постоянной работы.
           </p>
-          <Link className="about-me__link" to="https://link.com/AsaevArtemV">
+          <Link 
+            className="about-me__link" 
+            target="_blank"
+            to="https://github.com/AsaevArtemV">
             Github
           </Link>
         </div>

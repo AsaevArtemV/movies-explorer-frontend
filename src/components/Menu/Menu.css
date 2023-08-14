@@ -11,8 +11,7 @@
 }
 
 .profile-menu__container {
-  max-width: 520px;
-  min-width: 520px;
+  width: 520px;
   background: #202020;
   padding: 159px 120px 90px 120px;
   opacity: 1;

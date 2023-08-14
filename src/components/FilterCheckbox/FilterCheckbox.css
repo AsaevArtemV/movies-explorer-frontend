@@ -23,7 +23,7 @@
 .checkbox__slider:after {
   width: 16px;
   height: 16px;
-  top: 2px;
+  top: 1px;
   left: 2px;
   content: "";
   position: absolute;

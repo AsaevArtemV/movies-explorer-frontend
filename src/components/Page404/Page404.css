@@ -4,12 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 246px 0 60px;
 }
 
 .page404__container {
   display: flex;
   flex-direction: column;
+  margin-top: 246px;
 }
 
 .page404__title {
@@ -35,7 +35,7 @@
   line-height: normal;
   font-weight: 400;
   text-decoration: none;
-  margin: 184px 0 0;
+  margin: 184px 0 60px;
   text-align: center;
   cursor: pointer;
   color: #4285F4;
@@ -47,16 +47,18 @@
 }
 
 @media screen and (max-width: 769px) {
-  .page404 {
-    padding-top: 407px;
-    padding-bottom: 222px;
+  .page404__container {
+    margin-top: 407px;
+  }
+
+  .page404__link {
+    margin-bottom: 223px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .page404 {
-    padding-top: 329px;
-    padding-bottom: 30px;
+  .page404__container {
+    margin-top: 329px;
   }
 
   .page404__title {
@@ -71,5 +73,6 @@
   .page404__link {
     font-size: 12px;
     margin-top: 284px;
+    margin-bottom: 30px;
   }
 }
