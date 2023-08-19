@@ -18,16 +18,11 @@
   opacity: 0.7;
 }
 
-.signin_btn {
-  align-items: center;
+.header__btn_signin {
   border-radius: 3px;
   padding: 8px 20px;
   color: #000;
   background: #3DDC84;
-}
-
-.signin_btn:hover {
-  opacity: 0.7;
 }
 
 .navigation {
@@ -163,7 +158,7 @@
     margin-bottom: 4px;
   }
 
-  .signin_btn {
+  .header__btn_signin {
     width: 54px;
     height: 26px;
     font-size: 10px;

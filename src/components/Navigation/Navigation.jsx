@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Menu from "../Menu/Menu";
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation({ isLogged }) {
   const { pathname } = useLocation();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -15,24 +15,33 @@ function Navigation() {
     setIsOpenMenu(false);
   };
 
+  useEffect(() => {
+    function closeByEscape(evt) {
+      if (evt.key === "Escape") {
+        closeMenu();
+      }
+    }
+    function closeByOverlay(evt) {
+      if (evt.target.classList.contains("burger-menu")) {
+        closeMenu();
+      }
+    }
+
+    if (isOpenMenu) {
+      // Навешиваем только при открытии
+      document.addEventListener("keydown", closeByEscape);
+      document.addEventListener("mousedown", closeByOverlay);
+      // Удаляем в cleanup функции
+      return () => {
+        document.removeEventListener("keydown", closeByEscape);
+        document.removeEventListener("mousedown", closeByOverlay);
+      };
+    }
+  }, [isOpenMenu]);
+
   return (
     <>
-      {pathname === "/" ? (
-        <nav className="header__container">
-          <NavLink 
-            className="header__btn" 
-            to="/signup"
-          >
-            Регистрация
-          </NavLink>
-          <NavLink
-            className="header__btn signin_btn"
-            to="/signin"
-          >
-            Войти
-          </NavLink>
-        </nav>
-      ) : (
+      {isLogged ? (
         <nav className="navigation">
           <div className="navigation__texts">
             <NavLink
@@ -75,7 +84,22 @@ function Navigation() {
             </ul>
           )}
         </nav>
-      )}
+        ) : (
+          <nav className="header__container">
+            <NavLink
+              className="header__btn"
+              to="/signup"
+            >
+              Регистрация
+            </NavLink>
+            <NavLink
+              className="header__btn header__btn_signin"
+              to="/signin"
+            >
+              Войти
+            </NavLink>
+          </nav>
+        )}
     </>
   );
 }

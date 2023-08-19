@@ -1,8 +1,27 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import logo from "../../images/logo.svg";
+import { useFormWithValidation } from "../Hooks/useFormWithValidation";
 
-function Login() {
+function Login({
+  onLogin,
+  isStatusErrorServer,
+  setIsStatusErrorServer,
+}) {
+
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({});
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onLogin(values.password, values.email);
+  };
+
+  useEffect(() => {
+  resetForm();
+  setIsStatusErrorServer(false);
+  }, [resetForm, setIsStatusErrorServer]);
+
   return (
     <>
       <section className="login">
@@ -15,7 +34,11 @@ function Login() {
             />
           </Link>
           <h1 className="login__title">Рады видеть!</h1>
-          <form className="login__form" name="login">
+          <form 
+            className="login__form"
+            name="login" 
+            onSubmit={handleSubmit}
+          >
             <label className="login__label" htmlFor="name">
               E-mail
             </label>
@@ -24,18 +47,20 @@ function Login() {
               id="email"
               name="email"
               type="email"
-              placeholder="pochta@yandex.ru"
+              placeholder="Введите email"
               autoComplete="off"
               minLength="2"
               maxLength="40"
+              value={values.email || ""}
+              onChange={handleChange}
               required
             />
-            <span className="login__span-error"></span>
+            <span className="login__span-error">{errors.email}</span>
             <label className="login__label" htmlFor="password">
               Пароль
             </label>
             <input
-              className="login__input login__input-error"
+              className="login__input"
               id="password"
               name="password"
               type="password"
@@ -43,13 +68,20 @@ function Login() {
               autoComplete="off"
               minLength="2"
               maxLength="40"
+              value={values.password || ""}
+              onChange={handleChange}
               required
             />
-            <span className="login__span-error">
-              Что-то пошло не так...
+            <span className="login__span-error">{errors.password}</span>
+            <span
+              className={`form-login__span-error-server ${
+                isStatusErrorServer ? "form-login__span-error-server_active" : ""
+              }`}
+            >
+              Неправильный логин или пароль! Попробуйте ещё раз
             </span>
             <button
-              className="login__btn"
+              className={`login__btn ${!isValid ? "form-login__button_disabled" : ""}`}
               type="submit"
             >
               Войти

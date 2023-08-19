@@ -7,7 +7,7 @@
   background: #073042;
 }
 
-.header_profile {
+.header__profile {
   background-color: #202020;
 }
 
@@ -22,21 +22,21 @@
 }
 
 @media screen and (max-width: 769px) {
-  .header_wrapper {
+  .header__wrapper {
     padding: 18px 30px;
   }
 
-  .header_profile {
+  .header__profile {
     padding: 17px 38px 18px 30px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .header_wrapper {
+  .header__wrapper {
     padding: 18px 14px;
   }
 
-  .header_profile {
+  .header__profile {
     padding: 18px 22px 18px 14px;
   }
 }

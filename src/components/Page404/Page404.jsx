@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Page404.css";
 
-function Page404() {
+function Page404({ loggedIn }) {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="page404">
@@ -11,7 +13,9 @@ function Page404() {
         </div>
         <Link
           className="page404__link"
-          to="/"
+          onClick={() => {
+            loggedIn ? navigate(-2) : navigate(-1);
+          }}
         >
           Назад
         </Link>

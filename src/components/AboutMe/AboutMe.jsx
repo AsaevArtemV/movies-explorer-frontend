@@ -17,7 +17,7 @@ function AboutMe() {
             фриланс-заказами и ушёл с постоянной работы.
           </p>
           <Link 
-            className="about-me__link" 
+            className="about-me__link"
             target="_blank"
             to="https://github.com/AsaevArtemV">
             Github

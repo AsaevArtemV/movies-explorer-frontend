@@ -7,7 +7,7 @@ function Menu({ close }) {
   return (
     <div className="profile-menu">
       <div className="profile-menu__container">
-        <button 
+        <button
           className="profile-menu__btn_close"
           onClick={close}
         />
@@ -16,7 +16,7 @@ function Menu({ close }) {
             <NavLink
               className={`menu__item ${
                 pathname === "/" 
-                  ? "menu__item_active" 
+                  ? "menu__item_active"
                   : ""
               }`}
               to="/"
@@ -25,8 +25,8 @@ function Menu({ close }) {
             </NavLink>
             <NavLink
               className={`menu__item ${
-                pathname === "/movies" 
-                  ? "menu__item_active" 
+                pathname === "/movies"
+                  ? "menu__item_active"
                   : ""
               }`}
               to="/movies"
@@ -35,8 +35,8 @@ function Menu({ close }) {
             </NavLink>
             <NavLink
               className={`menu__item ${
-                pathname === "/saved-movies" 
-                  ? "menu__item_active" 
+                pathname === "/saved-movies"
+                  ? "menu__item_active"
                   : ""
               }`}
               to="/saved-movies"
@@ -45,7 +45,7 @@ function Menu({ close }) {
             </NavLink>
           </div>
           <NavLink
-            className="profile-menu_btn"
+            className="profile-menu__link"
             to="/profile"
           >
             Аккаунт

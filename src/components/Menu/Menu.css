@@ -82,7 +82,7 @@
   opacity: 1;
 }
 
-.profile-menu_btn {
+.profile-menu__link {
   width: 85px;
   height: 26px;
   display: flex;
@@ -101,11 +101,11 @@
   transition: opacity 0.2s ease-in-out;
 }
 
-.profile-menu_btn:hover {
+.profile-menu__link:hover {
   opacity: 0.7;
 }
 
-.profile-menu_btn::after {
+.profile-menu__link::after {
   width: 26px;
   height: 100%;
   background-image: url('../../images/profile.svg');
@@ -138,7 +138,7 @@
     padding-bottom: 7px;
   }
 
-  .profile-menu_btn {
+  .profile-menu__link {
     margin-top: 444px;
   }
 }
