@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useFormWithValidation } from "../Hooks/useFormWithValidation";
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ function Register({ onRegister, isStatusErrorServer, setIsStatusErrorServer }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onRegister(values.email, values.name, values.password);
+    onRegister(values.name, values.email, values.password);
   };
 
   useEffect(() => {

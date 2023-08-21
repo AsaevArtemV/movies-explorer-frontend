@@ -12,23 +12,23 @@ class Auth {
     });
   }
 
-  register(email, name, password) {
+  register(name, email, password) {
     return this._request(`${this._url}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ password: `${password}`, email: `${email}`, name: `${name}` }),
+      body: JSON.stringify({ name: `${name}`, email: `${email}`, password: `${password}` }),
     });
   }
 
-  authorize(password, email) {
+  authorize(email, password) {
     return this._request(`${this._url}/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ password: `${password}`, email: `${email}` }),
+      body: JSON.stringify({ email: `${email}`, password: `${password}` }),
     });
   }
 

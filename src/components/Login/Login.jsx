@@ -14,7 +14,7 @@ function Login({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onLogin(values.password, values.email);
+    onLogin(values.email, values.password);
   };
 
   useEffect(() => {

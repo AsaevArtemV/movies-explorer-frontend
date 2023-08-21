@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -146,16 +147,16 @@ function App() {
   }
 
   /* РЕГИСТРАЦИЯ ПОЛЬЗОВАТЕЛЯ */
-  const onRegister = (email, name, password) => {
+  const onRegister = (name, email, password) => {
     auth
-      .register(email, name, password)
+      .register(name, email, password)
       .then((data) => {
         setIsStatusErrorServer(false);
         if (!data) {
           throw new Error("Что-то пошло не так");
         }
         if (data) {
-          onLogin(password, email);
+          onLogin(email, password);
           setCurrentUser(data);
           console.log("Регистрация", data);
         }
@@ -167,9 +168,9 @@ function App() {
   };
 
   /* АВТОРИЗАЦИЯ ПОЛЬЗОВАТЕЛЯ */
-  const onLogin = (password, email) => {
+  const onLogin = (email, password) => {
     auth
-      .authorize(password, email)
+      .authorize(email, password)
       .then((data) => {
         setIsStatusErrorServer(false);
         if (!data) {
