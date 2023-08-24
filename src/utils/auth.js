@@ -32,7 +32,7 @@ class Auth {
     });
   }
 
-  getContent = (token) => {
+  checkToken = (token) => {
     return this._request(`${this._url}/users/me`, {
       method: "GET",
       headers: {

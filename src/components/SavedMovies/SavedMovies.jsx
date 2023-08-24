@@ -4,45 +4,43 @@ import "./SavedMovies.css";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
-import { DURATION_FILM__FOR_FILTER } from "../../utils/constants";
+import { DURATION_FILM__FOR_FILTER } from "../../constants/constants";
 
-function SavedMovies({ movies, onUnsaveFilm }) {
+function SavedMovies({ 
+  movies,
+  onUnsaveFilm
+}) {
+
   const [isLoading, setIsLoading] = useState(false);
-
   const [valueSearch, setValueSearch] = useState("");
-
   const [arrSearchInSave, setArrSearchInSave] = useState([]);
-
   const [isChecked, setIsChecked] = useState(false);
 
-  /* ЧЕКБОКС */
   function handleCheck() {
     setIsChecked(!isChecked);
   }
 
-  /* ПОИСК С ФИЛЬТРОМ */
+  // Поиск с фильтром
   function filteredMovies() {
     setIsLoading(true);
 
     setTimeout(() => {
-      /* ФИЛЬТР ВКЛЮЧЕН*/
+      // Фильтр вкл
       if (isChecked) {
-        const filterMovies = movies.filter((item) => {
+        const filterMovies = movies.filter((film) => {
           return (
-            item.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
-            item.duration <= DURATION_FILM__FOR_FILTER
+            film.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
+            film.duration <= DURATION_FILM__FOR_FILTER
           );
         });
 
       setArrSearchInSave(filterMovies);
       } else {
-        const newmovies = movies.filter((item) => {
-          return item.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
+        const newmovies = movies.filter((film) => {
+          return film.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
         });
-
         setArrSearchInSave(newmovies);
       }
-
       setIsLoading(false);
     }, 500);
   }

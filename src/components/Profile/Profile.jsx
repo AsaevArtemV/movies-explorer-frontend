@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useFormWithValidation } from "../Hooks/useFormWithValidation";
+import { useValidation } from "../Hooks/useValidation";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Profile.css";
 
 function Profile({
     onUpdateUserInfo,
     onSignOut,
-    isStatusErrorServer,
-    setIsStatusErrorServer,
+    serverError,
+    setServerError,
     isStatusOKServer,
     setIsStatusOKServer,
   }) {
-    const { values, handleChange, errors, isValid, setValues } = useFormWithValidation({});
+    const { values, handleChange, errors, isValid, setValues } = useValidation({});
   
     const currentUser = useContext(CurrentUserContext);
   
@@ -30,12 +30,12 @@ function Profile({
     }
   
     useEffect(() => {
-      setIsStatusErrorServer(false);
-    }, [isValid, setIsStatusErrorServer]);
+      setServerError(false);
+    }, [isValid, setServerError]);
   
     useEffect(() => {
       setIsStatusOKServer(false);
-    }, [isStatusErrorServer, setIsStatusOKServer]);
+    }, [serverError, setIsStatusOKServer]);
 
   return (
     <section className="edit-profile">
@@ -98,7 +98,7 @@ function Profile({
         </span>
         <span
           className={`form-profile__span-error-server ${
-            isStatusErrorServer ? "form-profile__span-error-server_active" : ""
+            serverError ? "form-profile__span-error-server_active" : ""
           }`}
         >
           Что-то пошло не так! Попробуйте ещё раз

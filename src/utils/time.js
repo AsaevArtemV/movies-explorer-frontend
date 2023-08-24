@@ -1,6 +1,6 @@
 export function converterOfMinutesToHours(min) {
   let hours = Math.floor(min / 60);
-  let minutes = min % 60; //остаток минут
+  let minutes = min % 60;
 
   if (hours === 0) {
     return `${minutes}м`;

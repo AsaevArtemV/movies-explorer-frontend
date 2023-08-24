@@ -33,6 +33,10 @@
   background: #2F2F2F;
 }
 
+.search-form__input[type=text] {
+  color: #FFF;
+}
+
 .search-form__btn {
   width: 80px;
   height: 100%;

@@ -5,7 +5,7 @@ class MainApi extends Api {
     super({ baseUrl, headers });
   }
 
-  getInfoUser() {
+  getUserInfo() {
     return super._request(`${this._url}/users/me`, {
       headers: this._headers,
     });
@@ -25,7 +25,7 @@ class MainApi extends Api {
     });
   }
 
-  saveNewFilm(film) {
+  saveFilm(film) {
     return this._request(`${this._url}/movies`, {
       method: "POST",
       body: JSON.stringify({
@@ -45,7 +45,7 @@ class MainApi extends Api {
     });
   }
 
-  unSaveNewFilm(id) {
+  deleteFilm(id) {
     return this._request(`${this._url}/movies/${id}`, {
       method: "DELETE",
       headers: this._headers,
@@ -53,4 +53,12 @@ class MainApi extends Api {
   }
 }
 
-export default MainApi;
+const apiMain = new MainApi({
+  baseUrl:"https://movies-explorer-api.nomoreparties.co",
+  headers: {
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+    "Content-Type": "application/json",
+  },
+});
+
+export default apiMain;

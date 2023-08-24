@@ -67,7 +67,7 @@
   font-size: 13px;
   line-height: normal;
   font-weight: 400;
-  margin-top: 206px;
+  margin-top: 160px;
   padding: 0;
   cursor: pointer;
   color: #FFF;
@@ -80,7 +80,7 @@
 }
 
 .profile__btn_disabled {
-  color: #0000007e;
+  color: #FFF;
   opacity: 1;
 
   cursor: default;
@@ -88,57 +88,43 @@
 }
 
 .profile__span-error {
-  box-sizing: border-box;
-  min-height: 30px;
-  margin: 6px 0 2px;
+  margin: 0;
   padding: 0;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
-
-  color: #ee3465;
+  color: #FF004C;
   /*opacity: 0;*/
   transition: opacity 0.3s linear;
-
   text-align: center;
   align-self: flex-end;
 }
 
 .profile__span-success {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: center;
-    color: rgb(0, 0, 0);
-    opacity: 0;
-  
-    margin: 16px 0 0;
-    padding: 0;
-  }
-  
-  .profile__span-success_active {
-    opacity: 1;
-  }
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #FFF;
+  opacity: 0;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.profile__span-success_active {
+  opacity: 1;
+}
 
 .form-profile__span-error-server {
-  box-sizing: border-box;
   min-height: 15px;
   width: 100%;
-  margin: 160px 0 0;
+  margin: 0;
   padding: 0;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
-
-  color: #ee3465;
+  color: #FF004C;
   opacity: 0;
-
   text-align: center;
 }
 

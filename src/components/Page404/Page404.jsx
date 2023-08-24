@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Page404.css";
 
-function Page404({ loggedIn }) {
+function Page404({ isLoggedIn }) {
   const navigate = useNavigate();
 
   return (
@@ -14,7 +14,7 @@ function Page404({ loggedIn }) {
         <Link
           className="page404__link"
           onClick={() => {
-            loggedIn ? navigate(-2) : navigate(-1);
+            isLoggedIn ? navigate(-2) : navigate(-1);
           }}
         >
           Назад

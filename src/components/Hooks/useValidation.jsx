@@ -1,42 +1,42 @@
 import { useState, useCallback } from "react";
+import { REG_EXP_NAME, REG_EXP_EMAIL } from "../../constants/constants";
+import { CHECK_THE_NAME_FIELD, CHECK_THE_EMAIL_FIELD } from "../../constants/message";
 
-import { REG_EXP_NAME, REG_EXP_EMAIL } from "../../utils/constants";
-
-//хук управления формой и валидации формы
-export function useFormWithValidation() {
+//Управление формой и валидацией формы
+export function useValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
-  const handleChange = (event) => {
-    const { value, name } = event.target;
+  const handleChange = (e) => {
+    const { value, name } = e.target;
     setValues({ ...values, [name]: value });
-    setIsValid(event.target.closest("form").checkValidity());
+    setIsValid(e.target.closest("form").checkValidity());
 
     if (name === "name" && value.length !== 0) {
       const isValidRegExp = REG_EXP_NAME.test(value);
       setErrors({
         ...errors,
-        [name]: isValidRegExp ? "" : "Убедитесь, что поле 'Имя' не содержит специальных символов",
+        [name]: isValidRegExp ? "" : CHECK_THE_NAME_FIELD,
       });
       if (!isValidRegExp) {
         setIsValid(false);
       } else setIsValid(true);
     } else {
-      setErrors({ ...errors, [name]: event.target.validationMessage });
+      setErrors({ ...errors, [name]: e.target.validationMessage });
     }
 
     if (name === "email" && value.length !== 0) {
       const isValidRegExp = REG_EXP_EMAIL.test(value);
       setErrors({
         ...errors,
-        [name]: isValidRegExp ? "" : "Убедитесь, что поле 'Email' введено корректно",
+        [name]: isValidRegExp ? "" : CHECK_THE_EMAIL_FIELD,
       });
       if (!isValidRegExp) {
         setIsValid(false);
       } else setIsValid(true);
     } else {
-      setErrors({ ...errors, [name]: event.target.validationMessage });
+      setErrors({ ...errors, [name]: e.target.validationMessage });
     }
   };
 

@@ -1,22 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { useFormWithValidation } from "../Hooks/useFormWithValidation";
+import { useValidation } from "../Hooks/useValidation";
 import { Link } from "react-router-dom";
 import "./Register.css";
 import logo from "../../images/logo.svg";
 
-function Register({ onRegister, isStatusErrorServer, setIsStatusErrorServer }) {
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({});
+function Register({ 
+  onRegister,
+  serverError,
+  setServerError
+}) {
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const { values, handleChange, errors, isValid, resetForm } = useValidation({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     onRegister(values.name, values.email, values.password);
   };
 
   useEffect(() => {
     resetForm();
-    setIsStatusErrorServer(false);
+    setServerError(false);
   }, []);
 
   return (
@@ -99,8 +104,8 @@ function Register({ onRegister, isStatusErrorServer, setIsStatusErrorServer }) {
               {errors.password}
             </span>
             <span
-              className={`form-register__span-error-server ${
-                isStatusErrorServer ? "form-register__span-error-server_active" : ""
+              className={`register__span-error-server ${
+                serverError ? "register__span-error-server_active" : ""
               }`}
             >
               Что-то пошло не так! Попробуйте ещё раз

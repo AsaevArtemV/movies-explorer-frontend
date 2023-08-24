@@ -5,11 +5,18 @@ class MoviesApi extends Api {
     super({ baseUrl, headers });
   }
 
-  getAllMovies() {
+  getInitialMovies() {
     return this._request(`${this._url}`, {
       headers: this._headers,
     });
   }
 }
 
-export default MoviesApi;
+const apiMovies = new MoviesApi({
+    baseUrl: "https://api.nomoreparties.co/beatfilm-movies",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+export default apiMovies;

@@ -1,22 +1,22 @@
+import { useState, useEffect, useMemo } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-
 import {
-    MAX_WIDTH_FOR_MOBILE,
-    COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_MOBILE,
-    COUNT_ADDED_MOVIES_ONCLICK_FOR_MOBILE,
-    MIN_WIDTH_FOR_DESKTOP,
-    COUNT_ADDED_MOVIES_ONCLICK_FOR_DESKTOP,
-    COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP,
-    COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD,
-  } from "../../utils/constants";
-
-  import { useState, useEffect, useMemo } from "react";
+  MAX_WIDTH_FOR_MOBILE,
+  COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_MOBILE,
+  COUNT_ADDED_MOVIES_ONCLICK_FOR_MOBILE,
+  MIN_WIDTH_FOR_DESKTOP,
+  COUNT_ADDED_MOVIES_ONCLICK_FOR_DESKTOP,
+  COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP,
+  COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD,
+} from "../../constants/constants";
 
 function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
+
   const [size, setSize] = useState({ width: 0, height: 0 });
 
-  const [countAddedMovies, setCountAddedMovies] = useState(0);
+  const [countAddMovies, setcountAddMovies] = useState(0);
+  
   const [initialMoviesForSizeWindow, setInitialMoviesForSizeWindow] = useState(0);
 
   function getSizeWindow() {
@@ -24,17 +24,16 @@ function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
   }
 
   useEffect(() => {
-    setCountAddedMovies(0);
-
+    setcountAddMovies(0);
     getSizeWindow();
 
-    //вешаем слушатель resize
+    //Вешаем слушатель resize
     window.addEventListener("resize", getSizeWindow);
     return () => window.removeEventListener("resize", getSizeWindow);
   }, []);
 
   useEffect(() => {
-    setCountAddedMovies(0);
+    setcountAddMovies(0);
   }, [movies]);
 
   const moviesAfterClickButton = useMemo(() => {
@@ -45,8 +44,8 @@ function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
         ? COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD
         : COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP;
     setInitialMoviesForSizeWindow(paginationCounter);
-    return movies.slice(0, paginationCounter + countAddedMovies);
-  }, [movies, countAddedMovies, size]);
+    return movies.slice(0, paginationCounter + countAddMovies);
+  }, [movies, countAddMovies, size]);
 
   function handleAddCard() {
     let countAdd;
@@ -54,7 +53,7 @@ function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
       countAdd = COUNT_ADDED_MOVIES_ONCLICK_FOR_DESKTOP;
     } else countAdd = COUNT_ADDED_MOVIES_ONCLICK_FOR_MOBILE;
 
-    setCountAddedMovies((prev) => prev + countAdd);
+    setcountAddMovies((prev) => prev + countAdd);
   }
 
   return (
@@ -74,7 +73,12 @@ function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
       </ul>
       {movies.length >= initialMoviesForSizeWindow &&
       movies.length !== moviesAfterClickButton.length ? (
-      <button className="card-list__btn" onClick={handleAddCard}>Ещё</button>
+      <button
+        className="card-list__btn"
+        onClick={handleAddCard}
+      >
+        Ещё
+      </button>
       ) : (
         ""
       )}

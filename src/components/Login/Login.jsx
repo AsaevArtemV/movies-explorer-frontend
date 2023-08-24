@@ -2,25 +2,25 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import logo from "../../images/logo.svg";
-import { useFormWithValidation } from "../Hooks/useFormWithValidation";
+import { useValidation } from "../Hooks/useValidation";
 
 function Login({
   onLogin,
-  isStatusErrorServer,
-  setIsStatusErrorServer,
+  serverError,
+  setServerError
 }) {
 
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({});
+  const { values, handleChange, errors, isValid, resetForm } = useValidation({});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onLogin(values.email, values.password);
   };
 
   useEffect(() => {
   resetForm();
-  setIsStatusErrorServer(false);
-  }, [resetForm, setIsStatusErrorServer]);
+  setServerError(false);
+  }, [resetForm, setServerError]);
 
   return (
     <>
@@ -74,14 +74,14 @@ function Login({
             />
             <span className="login__span-error">{errors.password}</span>
             <span
-              className={`form-login__span-error-server ${
-                isStatusErrorServer ? "form-login__span-error-server_active" : ""
+              className={`login__span-error-server ${
+                serverError ? "login__span-error-server_active" : ""
               }`}
             >
               Неправильный логин или пароль! Попробуйте ещё раз
             </span>
             <button
-              className={`login__btn ${!isValid ? "form-login__button_disabled" : ""}`}
+              className={`login__btn ${!isValid ? "login__btn_disabled" : ""}`}
               type="submit"
             >
               Войти
