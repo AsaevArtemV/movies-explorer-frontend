@@ -1,4 +1,4 @@
-export function converterOfMinutesToHours(min) {
+export function converterMinuteHour(min) {
   let hours = Math.floor(min / 60);
   let minutes = min % 60;
 

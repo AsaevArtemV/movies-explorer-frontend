@@ -14,9 +14,7 @@ class MoviesApi extends Api {
 
 const apiMovies = new MoviesApi({
     baseUrl: "https://api.nomoreparties.co/beatfilm-movies",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: {"Content-Type": "application/json"},
   });
 
 export default apiMovies;

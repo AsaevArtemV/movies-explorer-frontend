@@ -1,4 +1,4 @@
-import Api from "./api";
+import Api from './api';
 
 class MainApi extends Api {
   constructor({ baseUrl, headers }) {
@@ -7,27 +7,36 @@ class MainApi extends Api {
 
   getUserInfo() {
     return super._request(`${this._url}/users/me`, {
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
   }
 
   editUserInfo(data) {
     return super._request(`${this._url}/users/me`, {
-      method: "PATCH",
-      headers: this._headers,
+      method: 'PATCH',
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
       body: JSON.stringify(data),
     });
   }
 
   getSavedMovies() {
     return this._request(`${this._url}/movies`, {
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
   }
 
   saveFilm(film) {
     return this._request(`${this._url}/movies`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         country: film.country,
         director: film.director,
@@ -41,24 +50,27 @@ class MainApi extends Api {
         nameRU: film.nameRU,
         nameEN: film.nameEN,
       }),
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
   }
 
   deleteFilm(id) {
     return this._request(`${this._url}/movies/${id}`, {
-      method: "DELETE",
-      headers: this._headers,
+      method: 'DELETE',
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
   }
 }
 
 const apiMain = new MainApi({
-  baseUrl:"https://movies-explorer-api.nomoreparties.co",
-  headers: {
-    authorization: `Bearer ${localStorage.getItem("token")}`,
-    "Content-Type": "application/json",
-  },
+  baseUrl: 'https://movies-explorer-api.nomoreparties.co',
+  headers: {'Content-Type': 'application/json'},
 });
 
 export default apiMain;

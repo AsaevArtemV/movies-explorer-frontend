@@ -1,8 +1,14 @@
 import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
-import { converterOfMinutesToHours } from "../../utils/time.js";
+import { converterMinuteHour } from "../../utils/time.js";
 
-function MoviesCard({ film, savedMovies, onSaveFilm, onUnsaveFilm }) {
+function MoviesCard({
+  film,
+  savedMovies,
+   onSaveFilm,
+  onUnsaveFilm
+}) {
+
   const { pathname } = useLocation();
   const isSaveButton = pathname === "/movies";
   const isDeleteButton = pathname === "/saved-movies";
@@ -11,31 +17,32 @@ function MoviesCard({ film, savedMovies, onSaveFilm, onUnsaveFilm }) {
   const isSavedFilm = savedMovies ? savedMovies.some((i) => i.movieId === film.id) : false;
   const infoSaveFilm = savedMovies ? savedMovies.find((i) => i.movieId === film.id) : null;
 
-  function handleSaveClick(e) {
-    //e.preventDefault();
-    //console.log("handle request");
-
+  function handleSaveClick() {
     onSaveFilm(film, isSavedFilm, infoSaveFilm);
-    e.preventDefault();
-    console.log("handle request");
   }
 
-  function handleUnsaveClick(e) {
-    //e.preventDefault();
-    //console.log("handle request");
-    
+  function handleUnsaveClick() {
     onUnsaveFilm(film);
   }
 
   return (
     <li className="card">
-      <a className="card__link-image" href={film.trailerLink} target="_blank" rel="noreferrer">
-        <img className="card__image" src={imageUrl} alt="Картинка" />
+      <a
+        className="card__link-image"
+        href={film.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img
+          className="card__image"
+          src={imageUrl}
+          alt="Картинка"
+        />
       </a>
       <div className="card__info">
         <div className="card__description">
           <h2 className="card__name">{film.nameRU}</h2>
-          <p className="card__duration">{converterOfMinutesToHours(film.duration)}</p>
+          <p className="card__duration">{converterMinuteHour(film.duration)}</p>
         </div>
         {isSaveButton && (
         <button

@@ -18,7 +18,11 @@ class Auth {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: `${name}`, email: `${email}`, password: `${password}` }),
+      body: JSON.stringify({
+        name: `${name}`,
+        email: `${email}`,
+        password: `${password}`
+      }),
     });
   }
 
@@ -28,7 +32,10 @@ class Auth {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: `${email}`, password: `${password}` }),
+      body: JSON.stringify({
+        email: `${email}`,
+        password: `${password}`
+      }),
     });
   }
 
@@ -37,7 +44,7 @@ class Auth {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
     });
   };

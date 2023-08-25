@@ -6,7 +6,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import { DURATION_FILM__FOR_FILTER } from "../../constants/constants";
 
-function Movies({ 
+function Movies({
   movies,
   savedMovies,
   onSaveFilm,
@@ -55,22 +55,18 @@ function Movies({
     localStorage.setItem("stateCheckBox", JSON.stringify(isChecked));
 
     setTimeout(() => {
-      if (!isChecked && !valueSearch) {
-        console.log("фильтр не сделан и значения нет");
-      }
-
       // Фильтр ВКЛ
       if (isChecked && valueSearch) {
-        const moviesAfterSearchWithFilter = movies.filter((item) => {
+        const moviesAfterFilter = movies.filter((item) => {
           return (
             item.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
             item.duration <= DURATION_FILM__FOR_FILTER
           );
         });
-        setArrSearch(moviesAfterSearchWithFilter);
+        setArrSearch(moviesAfterFilter);
 
         //Записываем в localStorage найденные фильмы
-        localStorage.setItem("filteredMovies", JSON.stringify(moviesAfterSearchWithFilter));
+        localStorage.setItem("filteredMovies", JSON.stringify(moviesAfterFilter));
       } else if (!isChecked && valueSearch) {
         // Фильтр отключен
         const moviesAfterSearch = movies.filter((film) => {
@@ -97,8 +93,9 @@ function Movies({
       />
       {error && arrSearch.length === 0 ? (
         <p className="movies__text">
-          Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен.
-          Подождите немного и попробуйте ещё раз
+          Во время запроса произошла ошибка.
+          Возможно, проблема с соединением или сервер недоступен.
+          Подождите немного и попробуйте ещё раз.
         </p>
       ) : (
         ""

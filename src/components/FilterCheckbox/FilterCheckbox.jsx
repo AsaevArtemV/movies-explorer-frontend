@@ -1,6 +1,10 @@
 import "./FilterCheckbox.css";
 
-function FilterCheckbox({ isChecked, handleCheck }) {
+function FilterCheckbox({
+    isChecked,
+    handleCheck
+}) {
+
   return (
     <label className="checkbox">
       <input

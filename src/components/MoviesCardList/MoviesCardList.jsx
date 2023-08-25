@@ -8,19 +8,25 @@ import {
   MIN_WIDTH_FOR_DESKTOP,
   COUNT_ADDED_MOVIES_ONCLICK_FOR_DESKTOP,
   COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP,
-  COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD,
+  COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD
 } from "../../constants/constants";
 
-function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
+function MoviesCardList({
+  movies,
+  savedMovies,
+  onSaveFilm,
+  onUnsaveFilm
+}) {
 
   const [size, setSize] = useState({ width: 0, height: 0 });
-
   const [countAddMovies, setcountAddMovies] = useState(0);
-  
-  const [initialMoviesForSizeWindow, setInitialMoviesForSizeWindow] = useState(0);
+  const [initialMoviesSize, setinitialMoviesSize] = useState(0);
 
   function getSizeWindow() {
-    setSize({ width: window.innerWidth, height: window.innerHeight });
+    setSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
   }
 
   useEffect(() => {
@@ -43,7 +49,8 @@ function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
         : size.width < MIN_WIDTH_FOR_DESKTOP
         ? COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD
         : COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP;
-    setInitialMoviesForSizeWindow(paginationCounter);
+
+    setinitialMoviesSize(paginationCounter);
     return movies.slice(0, paginationCounter + countAddMovies);
   }, [movies, countAddMovies, size]);
 
@@ -71,7 +78,7 @@ function MoviesCardList({ movies, savedMovies, onSaveFilm, onUnsaveFilm }) {
           );
         })}
       </ul>
-      {movies.length >= initialMoviesForSizeWindow &&
+      {movies.length >= initialMoviesSize &&
       movies.length !== moviesAfterClickButton.length ? (
       <button
         className="card-list__btn"

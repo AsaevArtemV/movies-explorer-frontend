@@ -22,7 +22,7 @@ function Navigation({ isLogged }) {
       }
     }
     function closeByOverlay(evt) {
-      if (evt.target.classList.contains("burger-menu")) {
+      if (evt.target.classList.contains("profile-menu")) {
         closeMenu();
       }
     }
@@ -31,7 +31,7 @@ function Navigation({ isLogged }) {
       // Навешиваем только при открытии
       document.addEventListener("keydown", closeByEscape);
       document.addEventListener("mousedown", closeByOverlay);
-      // Удаляем в cleanup функции
+      // Удаляем
       return () => {
         document.removeEventListener("keydown", closeByEscape);
         document.removeEventListener("mousedown", closeByOverlay);

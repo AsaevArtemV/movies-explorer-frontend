@@ -6,12 +6,12 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import { DURATION_FILM__FOR_FILTER } from "../../constants/constants";
 
-function SavedMovies({ 
+function SavedMovies({
   movies,
-  onUnsaveFilm
+  onUnsaveFilm,
+  isLoading
 }) {
 
-  const [isLoading, setIsLoading] = useState(false);
   const [valueSearch, setValueSearch] = useState("");
   const [arrSearchInSave, setArrSearchInSave] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
@@ -22,9 +22,6 @@ function SavedMovies({
 
   // Поиск с фильтром
   function filteredMovies() {
-    setIsLoading(true);
-
-    setTimeout(() => {
       // Фильтр вкл
       if (isChecked) {
         const filterMovies = movies.filter((film) => {
@@ -33,7 +30,6 @@ function SavedMovies({
             film.duration <= DURATION_FILM__FOR_FILTER
           );
         });
-
       setArrSearchInSave(filterMovies);
       } else {
         const newmovies = movies.filter((film) => {
@@ -41,13 +37,11 @@ function SavedMovies({
         });
         setArrSearchInSave(newmovies);
       }
-      setIsLoading(false);
-    }, 500);
   }
 
   useEffect(() => {
     filteredMovies();
-  }, []);
+  }, [movies]);
 
   return (
     <section className="movies">

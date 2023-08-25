@@ -10,7 +10,13 @@ function Login({
   setServerError
 }) {
 
-  const { values, handleChange, errors, isValid, resetForm } = useValidation({});
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    resetForm,
+  } = useValidation({});
 
   const handleSubmit = (e) => {
     e.preventDefault();

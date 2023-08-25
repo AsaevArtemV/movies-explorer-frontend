@@ -2,20 +2,25 @@
 import { useEffect } from "react";
 import { useValidation } from "../Hooks/useValidation";
 import { Link } from "react-router-dom";
-import "./Register.css";
 import logo from "../../images/logo.svg";
+import "./Register.css";
 
-function Register({ 
+function Register({
   onRegister,
   serverError,
   setServerError
 }) {
 
-  const { values, handleChange, errors, isValid, resetForm } = useValidation({});
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    resetForm
+} = useValidation({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onRegister(values.name, values.email, values.password);
   };
 

@@ -3,7 +3,14 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { ENTER_NAME_MOVIE } from "../../constants/message";
 import "./SearchForm.css";
 
-function SearchForm({ valueSearch, setValueSearch, isChecked, handleCheck, filteredMovies }) {
+function SearchForm({ 
+    valueSearch,
+    setValueSearch,
+    isChecked,
+    handleCheck,
+    filteredMovies,
+}) {
+
   const [textError, setTextError] = useState("");
 
   const handleChange = (e) => {

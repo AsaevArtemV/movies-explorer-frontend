@@ -98,7 +98,6 @@ function App() {
         if (data) {
           onLogin(email, password);
           setCurrentUser(data);
-          console.log("Регистрация", data);
         }
       })
       .catch(() => {
@@ -119,8 +118,6 @@ function App() {
         if (data) {
           setIsLoggedIn(true);
           localStorage.setItem("token", data.jwt);
-          console.log("Вход", data);
-          return data;
         }
       })
       .then(() => {
@@ -150,22 +147,15 @@ function App() {
 
   // Удалить из сохраненных фильм
   function handleDeleteFilm(film) {
-    setIsLoading(true);
-    
     apiMain
       .deleteFilm(film._id)
       .then((film) => {
         const newSavedMovies = listSavedMovies.filter((f) => (f._id === film._id ? "" : f));
         setListSavedMovies(newSavedMovies);
-        //e.preventDefault();
-        //console.log('reset')
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}.`);
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
   }
 
   // Изменить данные пользователя

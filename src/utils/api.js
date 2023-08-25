@@ -10,7 +10,7 @@ class Api {
       return res.json();
     }
     //Отклонить Promise при ошибке
-    return Promise.reject(`Ошибка: ${res.status}`); // если ошибка, отклоняем промис
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   _request(url, options) {
