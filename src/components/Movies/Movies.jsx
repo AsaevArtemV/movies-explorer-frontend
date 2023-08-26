@@ -17,6 +17,7 @@ function Movies({
   const [valueSearch, setValueSearch] = useState("");
   const [arrSearch, setArrSearch] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
+  const [searchEmpty, setSearchEmpty] = useState(null);
   const error = false;
 
   // Найденные фильмы
@@ -47,40 +48,59 @@ function Movies({
     setIsChecked(!isChecked);
   }
 
-  // Поиск с фильтром
+  // Поиск фильс=мов с фильтром (ВКЛ, ВЫКЛ)
   function filteredMovies() {
-    // Заисываем в localStorage текст запроса и состояние чек-бокса
-    localStorage.setItem("queryForSearch", valueSearch);
-    // Заисываем в localStorage состояние чек-бокса
-    localStorage.setItem("stateCheckBox", JSON.stringify(isChecked));
+   // Заисываем в localStorage текст запроса
+   localStorage.setItem("queryForSearch", valueSearch);
+   // Заисываем в localStorage состояние чек-бокса
+   localStorage.setItem("stateCheckBox", JSON.stringify(isChecked));
 
-    setTimeout(() => {
-      // Фильтр ВКЛ
-      if (isChecked && valueSearch) {
-        const moviesAfterFilter = movies.filter((item) => {
-          return (
-            item.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
-            item.duration <= DURATION_FILM__FOR_FILTER
-          );
-        });
-        setArrSearch(moviesAfterFilter);
+   //setTimeout(() => {
+     // Фильтр ВКЛ
+     if (isChecked && valueSearch) {
+       const moviesAfterFilter = movies.filter((item) => {
+         return (
+           item.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
+           item.duration <= DURATION_FILM__FOR_FILTER
+         );
+       });
+       setArrSearch(moviesAfterFilter);
 
-        //Записываем в localStorage найденные фильмы
-        localStorage.setItem("filteredMovies", JSON.stringify(moviesAfterFilter));
-      } else if (!isChecked && valueSearch) {
-        // Фильтр отключен
-        const moviesAfterSearch = movies.filter((film) => {
-          return film.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
-        });
-        setArrSearch(moviesAfterSearch);
+       console.log(arrSearch);
 
-        //Записываем в localStorage найденные фильмы
-        localStorage.setItem("filteredMovies", JSON.stringify(moviesAfterSearch));
-      } else setArrSearch(movies);
+      //if (arrSearch.length === 0) { работает только при втором клике
+      if (arrSearch !== 0) {
+        setSearchEmpty("Ничего не найдено");
+      } else {
+        setSearchEmpty(null);
+      }
 
-      setIsLoading(false);
-    }, 500);
-  }
+       //Записываем в localStorage найденные фильмы
+       localStorage.setItem("filteredMovies", JSON.stringify(moviesAfterFilter));
+     } else if (!isChecked && valueSearch) {
+       // Фильтр ВЫКЛ
+       const moviesAfterSearch = movies.filter((film) => {
+         return film.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
+       });
+       setArrSearch(moviesAfterSearch);
+
+        console.log(arrSearch);
+
+      //if (arrSearch.length === 0) { работает только при втором клике
+      if (arrSearch !== 0) {
+        setSearchEmpty("Ничего не найдено");
+      } else {
+        setSearchEmpty(null);
+      }
+
+       //Записываем в localStorage найденные фильмы
+       localStorage.setItem("filteredMovies", JSON.stringify(moviesAfterSearch));
+     } else setArrSearch(movies);
+
+     setIsLoading(false);
+   //}, 500);
+ } 
+
 
   return (
     <section className="movies">
@@ -102,18 +122,20 @@ function Movies({
       )}
       {isLoading ? (
         <Preloader />
-        ) : arrSearch.length ? (
+        ) :  (
         <MoviesCardList
           movies={arrSearch}
           savedMovies={savedMovies}
           onSaveFilm={onSaveFilm}
           onUnsaveFilm={onUnsaveFilm}
         />
-        ) : (
-          <p className="movies__text">Ничего не найдено</p>
-        )}
+        ) }
+        {searchEmpty ? (
+          <p className="movies__text">{searchEmpty}</p>
+        ) : ("")}
     </section>
   );
-}
+} 
+
 
 export default Movies;

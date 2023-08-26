@@ -15,6 +15,7 @@ function SavedMovies({
   const [valueSearch, setValueSearch] = useState("");
   const [arrSearchInSave, setArrSearchInSave] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
+  const [searchEmpty, setSearchEmpty] = useState(null);
 
   function handleCheck() {
     setIsChecked(!isChecked);
@@ -31,11 +32,27 @@ function SavedMovies({
           );
         });
       setArrSearchInSave(filterMovies);
+
+      //if (arrSearchInSave.length === 0) { работает только при втором клике
+      if (arrSearchInSave !== 0) {
+        setSearchEmpty("Ничего не найдено");
+      } else {
+        setSearchEmpty(null);
+      }
+
       } else {
         const newmovies = movies.filter((film) => {
           return film.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
         });
         setArrSearchInSave(newmovies);
+
+        //if (arrSearchInSave.length === 0) { работает только при втором клике
+          if (arrSearchInSave !== 0) {
+            setSearchEmpty("Ничего не найдено");
+          } else {
+            setSearchEmpty(null);
+          }
+
       }
   }
 
@@ -54,14 +71,15 @@ function SavedMovies({
       />
       {isLoading ? (
         <Preloader />
-      ) : arrSearchInSave.length ? (
+      ) : (
         <MoviesCardList
           movies={arrSearchInSave}
           onUnsaveFilm={onUnsaveFilm}
         />
-      ) : (
-        <p className="movies__text">Ничего не найдено</p>
-      )}
+        ) }
+        {searchEmpty ? (
+          <p className="movies__text">{searchEmpty}</p>
+        ) : ("")}
     </section>
   );
 }

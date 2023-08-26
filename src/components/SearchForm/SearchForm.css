@@ -83,7 +83,9 @@
 
 .search-form__span-error {
   min-height: 30px;
-  width: 100%;
+  /*width: 100%;*/
+  width: 200px;
+  display: block; /*Удалить как исправишь*/
   margin: 6px 0 2px;
   padding: 0 0 0 25px;
   font-weight: 400;

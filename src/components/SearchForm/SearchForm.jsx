@@ -3,12 +3,12 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { ENTER_NAME_MOVIE } from "../../constants/message";
 import "./SearchForm.css";
 
-function SearchForm({ 
-    valueSearch,
-    setValueSearch,
-    isChecked,
-    handleCheck,
-    filteredMovies,
+function SearchForm({
+  valueSearch,
+  setValueSearch,
+  isChecked,
+  handleCheck,
+  filteredMovies,
 }) {
 
   const [textError, setTextError] = useState("");
@@ -19,14 +19,15 @@ function SearchForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     filteredMovies();
+
     if (!valueSearch) {
       setTextError(ENTER_NAME_MOVIE);
       return;
     } else {
       setValueSearch(valueSearch);
     }
+    setTextError("");
   };
 
   return (
@@ -34,6 +35,7 @@ function SearchForm({
       <div className="search-form__container">
         <form className="search-form__form"
           onSubmit={handleSubmit}
+          noValidate
         >
           <input
             className="search-form__input"
