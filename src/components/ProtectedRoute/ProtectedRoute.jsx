@@ -5,8 +5,8 @@ function ProtectedRoute({
     element: Component,
     ...props
 }) {
-
-  return props.isLoggedIn 
+  const isLoggedIn = localStorage.getItem('token') !== null;
+  return isLoggedIn
   ? <Component {...props} />
   : <Navigate to="/" replace />;
 }

@@ -9,6 +9,7 @@ function SearchForm({
   isChecked,
   handleCheck,
   filteredMovies,
+  handleCheckSavedMovies,
 }) {
 
   const [textError, setTextError] = useState("");
@@ -48,14 +49,19 @@ function SearchForm({
             required
           />
           <button
-            className={`search-form__btn ${!valueSearch ? "search-form__btn_disabled" : ""}`}
+            className="search-form__btn"
             type="submit"
           />
         </form>
         <div className="search-form__filter">
-          <FilterCheckbox 
+          <FilterCheckbox
             isChecked={isChecked}
             handleCheck={handleCheck}
+            filteredMovies={filteredMovies}
+            valueSearch={valueSearch}
+            setTextError={setTextError}
+            setValueSearch={setValueSearch}
+            handleCheckSavedMovies={handleCheckSavedMovies}
           />
           <p className="search-form__text">Короткометражки</p>
         </div>

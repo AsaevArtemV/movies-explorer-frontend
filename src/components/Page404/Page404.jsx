@@ -1,9 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Page404.css";
 
-function Page404({ isLoggedIn }) {
-  const navigate = useNavigate();
+function Page404() {
+    const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
+  
   return (
     <>
       <section className="page404">
@@ -11,14 +16,12 @@ function Page404({ isLoggedIn }) {
           <h1 className="page404__title">404</h1>
           <p className="page404__subtitle">Страница не найдена</p>
         </div>
-        <Link
-          className="page404__link"
-          onClick={() => {
-            isLoggedIn ? navigate(-2) : navigate(-1);
-          }}
+        <button className="page404__link" tupe="button"
+          aria-label="Назад"
+          onClick={goBack}
         >
-          Назад
-        </Link>
+        Назад
+        </button>
       </section>
     </>
   );

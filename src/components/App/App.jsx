@@ -183,7 +183,7 @@ function App() {
   // Выход из профиля
   const onSignOut = () => {
     setIsLoggedIn(false);
-    navigate("/", { replace: true });
+    //navigate("/", { replace: true });
 
     localStorage.removeItem("token");
     localStorage.removeItem("filteredMovies");

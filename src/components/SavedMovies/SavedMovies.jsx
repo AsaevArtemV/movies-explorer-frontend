@@ -17,43 +17,46 @@ function SavedMovies({
   const [isChecked, setIsChecked] = useState(false);
   const [searchEmpty, setSearchEmpty] = useState(null);
 
-  function handleCheck() {
-    setIsChecked(!isChecked);
+  function handleCheckSavedMovies() {
+    const newIsChecked = !isChecked;
+    setIsChecked(newIsChecked);
+    filteredMovies(newIsChecked);
   }
 
   // Поиск с фильтром
-  function filteredMovies() {
-      // Фильтр вкл
-      if (isChecked) {
-        const filterMovies = movies.filter((film) => {
-          return (
-            film.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
-            film.duration <= DURATION_FILM__FOR_FILTER
-          );
-        });
+  function filteredMovies(newIsChecked = isChecked) {
+    // console.log(newIsChecked)
+    // Фильтр вкл
+    if (newIsChecked) {
+      const filterMovies = movies.filter((film) => {
+        return (
+          film.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
+          film.duration <= DURATION_FILM__FOR_FILTER
+        );
+      });
+
       setArrSearchInSave(filterMovies);
 
-      //if (arrSearchInSave.length === 0) { работает только при втором клике
-      if (arrSearchInSave !== 0) {
+      if (filterMovies.length === 0) {
+        setSearchEmpty("Ничего не найдено");
+      } else {
+        setSearchEmpty("");
+      } 
+      return;
+
+    } else {
+      const newmovies = movies.filter((film) => {
+        return film.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
+      });
+        
+      setArrSearchInSave(newmovies);
+
+      if (newmovies.length === 0 && valueSearch) {
         setSearchEmpty("Ничего не найдено");
       } else {
         setSearchEmpty(null);
       }
-
-      } else {
-        const newmovies = movies.filter((film) => {
-          return film.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
-        });
-        setArrSearchInSave(newmovies);
-
-        //if (arrSearchInSave.length === 0) { работает только при втором клике
-          if (arrSearchInSave !== 0) {
-            setSearchEmpty("Ничего не найдено");
-          } else {
-            setSearchEmpty(null);
-          }
-
-      }
+    }
   }
 
   useEffect(() => {
@@ -66,7 +69,7 @@ function SavedMovies({
         valueSearch={valueSearch}
         setValueSearch={setValueSearch}
         isChecked={isChecked}
-        handleCheck={handleCheck}
+        handleCheckSavedMovies={handleCheckSavedMovies}
         filteredMovies={filteredMovies}
       />
       {isLoading ? (

@@ -16,7 +16,7 @@ function Movies({
   const [isLoading, setIsLoading] = useState(false);
   const [valueSearch, setValueSearch] = useState("");
   const [arrSearch, setArrSearch] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(JSON.parse(localStorage.getItem("stateCheckBox")) || false);
   const [searchEmpty, setSearchEmpty] = useState(null);
   const error = false;
 
@@ -30,7 +30,6 @@ function Movies({
   useEffect(() => {
     setIsLoading(true);
 
-    setTimeout(() => {
       if (textSearch) {
         setValueSearch(textSearch);
       }
@@ -41,23 +40,22 @@ function Movies({
         setArrSearch(filterMovies);
       }
       setIsLoading(false);
-    }, 500);
   }, []);
 
   function handleCheck() {
-    setIsChecked(!isChecked);
+    const newIsChecked = !isChecked;
+    setIsChecked(newIsChecked);
   }
 
   // Поиск фильс=мов с фильтром (ВКЛ, ВЫКЛ)
-  function filteredMovies() {
+  function filteredMovies(newIsChecked = isChecked) {
    // Заисываем в localStorage текст запроса
    localStorage.setItem("queryForSearch", valueSearch);
    // Заисываем в localStorage состояние чек-бокса
-   localStorage.setItem("stateCheckBox", JSON.stringify(isChecked));
+   localStorage.setItem("stateCheckBox", JSON.stringify(newIsChecked));
 
-   //setTimeout(() => {
      // Фильтр ВКЛ
-     if (isChecked && valueSearch) {
+     if (newIsChecked && valueSearch) {
        const moviesAfterFilter = movies.filter((item) => {
          return (
            item.nameRU.toLowerCase().includes(valueSearch.toLowerCase()) &&
@@ -66,31 +64,26 @@ function Movies({
        });
        setArrSearch(moviesAfterFilter);
 
-       console.log(arrSearch);
-
-      //if (arrSearch.length === 0) { работает только при втором клике
-      if (arrSearch !== 0) {
+      if (moviesAfterFilter.length === 0) {
         setSearchEmpty("Ничего не найдено");
       } else {
-        setSearchEmpty(null);
+        setSearchEmpty("");
       }
 
        //Записываем в localStorage найденные фильмы
        localStorage.setItem("filteredMovies", JSON.stringify(moviesAfterFilter));
-     } else if (!isChecked && valueSearch) {
+
+     } else if (!newIsChecked && valueSearch) {
        // Фильтр ВЫКЛ
        const moviesAfterSearch = movies.filter((film) => {
          return film.nameRU.toLowerCase().includes(valueSearch.toLowerCase());
        });
        setArrSearch(moviesAfterSearch);
 
-        console.log(arrSearch);
-
-      //if (arrSearch.length === 0) { работает только при втором клике
-      if (arrSearch !== 0) {
+      if (moviesAfterSearch.length === 0) {
         setSearchEmpty("Ничего не найдено");
       } else {
-        setSearchEmpty(null);
+        setSearchEmpty("");
       }
 
        //Записываем в localStorage найденные фильмы
@@ -98,7 +91,6 @@ function Movies({
      } else setArrSearch(movies);
 
      setIsLoading(false);
-   //}, 500);
  } 
 
 
@@ -117,12 +109,10 @@ function Movies({
           Возможно, проблема с соединением или сервер недоступен.
           Подождите немного и попробуйте ещё раз.
         </p>
-      ) : (
-        ""
-      )}
+      ) : ("")}
       {isLoading ? (
         <Preloader />
-        ) :  (
+        ) : (
         <MoviesCardList
           movies={arrSearch}
           savedMovies={savedMovies}

@@ -53,9 +53,12 @@
   opacity: 0.7;
 }
 
-.navigation__texts_active {
-  font-weight: 500;
+.navigation__text_active {
+  font-weight: 700;
   cursor: default;
+}
+
+.navigation__text_active:hover {
   opacity: 1;
 }
 
