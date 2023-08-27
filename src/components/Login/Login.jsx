@@ -21,12 +21,11 @@ function Login({
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin(values.email, values.password);
-    
   };
 
   useEffect(() => {
-  resetForm();
-  setServerError(false);
+    resetForm();
+    setServerError(false);
   }, [resetForm, setServerError]);
 
   return (
@@ -41,9 +40,9 @@ function Login({
             />
           </Link>
           <h1 className="login__title">Рады видеть!</h1>
-          <form 
+          <form
             className="login__form"
-            name="login" 
+            name="form"
             onSubmit={handleSubmit}
           >
             <label className="login__label" htmlFor="name">

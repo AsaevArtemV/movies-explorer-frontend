@@ -1,14 +1,17 @@
+/* eslint-disable no-useless-escape */
 const DURATION_FILM__FOR_FILTER = 40;
 const REG_EXP_NAME = /^[a-zA-Zа-яА-Я\sё-]+$/;
-const REG_EXP_EMAIL = /^[-!#$%&'*+\\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
+const REG_EXP_EMAIL = /^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 const MAX_WIDTH_FOR_MOBILE = 480;
-const MIN_WIDTH_FOR_DESKTOP = 1280;
-const COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_MOBILE = 2;
-const COUNT_ADDED_MOVIES_ONCLICK_FOR_MOBILE = 5;
-const COUNT_ADDED_MOVIES_ONCLICK_FOR_DESKTOP = 3;
-const COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP = 12;
+const MIN_WIDTH_FOR_DESKTOP = 1279;
+
+const COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_MOBILE = 5;
 const COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD = 8;
+const COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP = 12;
+
+const COUNT_ADDED_MOVIES_ONCLICK_FOR_MOBILE = 2;
+const COUNT_ADDED_MOVIES_ONCLICK_FOR_DESKTOP = 3;
+
 
 export {
   DURATION_FILM__FOR_FILTER,

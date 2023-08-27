@@ -26,7 +26,6 @@ function FilterCheckbox({
       setTextError("");
       filteredMovies(newIsChecked);
     }
-
     if (handleCheckSavedMovies) {
       handleCheckSavedMovies(newIsChecked)
     }

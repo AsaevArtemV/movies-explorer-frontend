@@ -46,10 +46,9 @@ function MoviesCardList({
     const paginationCounter =
       size.width < MAX_WIDTH_FOR_MOBILE
         ? COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_MOBILE
-        : size.width < MIN_WIDTH_FOR_DESKTOP
+        : size.width <= MIN_WIDTH_FOR_DESKTOP
         ? COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_PAD
         : COUNT_INITIAL_MOVIES_ON_SCREEN_FOR_DESKTOP;
-
     setinitialMoviesSize(paginationCounter);
     return movies.slice(0, paginationCounter + countAddMovies);
   }, [movies, countAddMovies, size]);
@@ -59,7 +58,6 @@ function MoviesCardList({
     if (size.width > MIN_WIDTH_FOR_DESKTOP) {
       countAdd = COUNT_ADDED_MOVIES_ONCLICK_FOR_DESKTOP;
     } else countAdd = COUNT_ADDED_MOVIES_ONCLICK_FOR_MOBILE;
-
     setcountAddMovies((prev) => prev + countAdd);
   }
 
@@ -83,12 +81,9 @@ function MoviesCardList({
       <button
         className="card-list__btn"
         onClick={handleAddCard}
-      >
-        Ещё
+      >Ещё
       </button>
-      ) : (
-        ""
-      )}
+      ) : ("")}
       </div>
   );
 }

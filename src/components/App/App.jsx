@@ -183,8 +183,6 @@ function App() {
   // Выход из профиля
   const onSignOut = () => {
     setIsLoggedIn(false);
-    //navigate("/", { replace: true });
-
     localStorage.removeItem("token");
     localStorage.removeItem("filteredMovies");
     localStorage.removeItem("queryForSearch");
@@ -275,14 +273,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="*"
-            element={
-              <Page404
-                isLoggedIn={isLoggedIn}
-              />
-            }
-          />
+          <Route path="*" element={<Page404 isLoggedIn={isLoggedIn} /> } />
         </Routes>
         )}
       </main>

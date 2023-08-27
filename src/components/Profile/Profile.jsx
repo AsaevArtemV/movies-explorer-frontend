@@ -123,7 +123,7 @@ function Profile({
       </form>
       <Link
         className="profile__link-exit"
-        to="/signin"
+        to="/"
         onClick={onSignOut}
       >
         Выйти из аккаунта
