@@ -1,3 +1,17 @@
 .movies{
+  display: flex;
+  flex-direction: column;
   background: #202020;
+}
+
+.movies__text {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #FFF;
+  margin: 100px 0 0;
+  padding: 0;
+  height: 30vh;
 }

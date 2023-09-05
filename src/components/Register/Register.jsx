@@ -1,8 +1,34 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
+import { useValidation } from "../Hooks/useValidation";
 import { Link } from "react-router-dom";
-import "./Register.css";
 import logo from "../../images/logo.svg";
+import "./Register.css";
 
-function Register() {
+function Register({
+  onRegister,
+  serverError,
+  setServerError
+}) {
+
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    resetForm
+} = useValidation({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onRegister(values.name, values.email, values.password);
+  };
+
+  useEffect(() => {
+    resetForm();
+    setServerError(false);
+  }, []);
+
   return (
     <>
       <main className="register">
@@ -18,6 +44,7 @@ function Register() {
           <form
             className="register__form"
             name="register"
+            onSubmit={handleSubmit}
           >
             <label
               className="register__label"
@@ -30,13 +57,15 @@ function Register() {
               id="name"
               name="name"
               type="text"
-              placeholder="Виталий"
+              placeholder="Введите имя"
               autoComplete="off"
               minLength="2"
               maxLength="40"
+              value={values.name || ""}
+              onChange={handleChange}
               required
             />
-            <span className="register__span-error"></span>
+            <span className="register__span-error">{errors.name}</span>
             <label
               className="register__label"
               htmlFor="email"
@@ -48,13 +77,15 @@ function Register() {
               id="email"
               name="email"
               type="email"
-              placeholder="pochta@yandex.ru"
+              placeholder="Введите email"
               autoComplete="off"
               minLength="2"
               maxLength="40"
+              value={values.email || ""}
+              onChange={handleChange}
               required
             />
-            <span className="register__span-error"></span>
+            <span className="register__span-error">{errors.email}</span>
             <label
               className="register__label"
               htmlFor="password"
@@ -62,21 +93,32 @@ function Register() {
               Пароль
             </label>
             <input
-              className="register__input register__input-error"
+              className="register__input"
               id="password"
               name="password"
               type="password"
-              placeholder="••••••••••••••"
+              placeholder="Введите пароль"
               minLength="2"
               maxLength="40"
               autoComplete="off"
+              value={values.password || ""}
+              onChange={handleChange}
               required
             />
             <span className="register__span-error">
-              Что-то пошло не так...
+              {errors.password}
+            </span>
+            <span
+              className={`register__span-error-server ${
+                serverError ? "register__span-error-server_active" : ""
+              }`}
+            >
+              Что-то пошло не так! Попробуйте ещё раз
             </span>
             <button
-              className="register__btn"
+              className={`register__btn ${
+                !isValid ? "register__btn_disabled" : ""
+              }`}
               type="submit"
             >
               Зарегистрироваться

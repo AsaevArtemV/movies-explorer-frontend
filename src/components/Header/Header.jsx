@@ -3,15 +3,15 @@ import Navigation from "../Navigation/Navigation";
 import logo from "../../images/logo.svg";
 import "./Header.css";
 
-function Header() {
+function Header({ isLogged }) {
   const { pathname } = useLocation();
 
   return (
-    <header 
+    <header
       className={`header ${
-        pathname === "/" 
-          ? "header_wrapper" 
-          : "header_profile"
+        pathname === "/"
+          ? "header__wrapper"
+          : "header__profile"
       }`}>
       <Link
         className="header__link"
@@ -23,7 +23,7 @@ function Header() {
           alt="Логотип"
         />
       </Link>
-      <Navigation />
+      <Navigation isLogged={isLogged} />
     </header>
   );
 }

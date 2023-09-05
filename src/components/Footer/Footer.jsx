@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer
       className={`footer ${
-        pathname === "/" 
+        pathname === "/"
           ? "footer__film-save"
           : "footer__movies"
         }`}

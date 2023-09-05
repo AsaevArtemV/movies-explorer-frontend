@@ -1,8 +1,33 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import logo from "../../images/logo.svg";
+import { useValidation } from "../Hooks/useValidation";
 
-function Login() {
+function Login({
+  onLogin,
+  serverError,
+  setServerError
+}) {
+
+  const {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    resetForm,
+  } = useValidation({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin(values.email, values.password);
+  };
+
+  useEffect(() => {
+    resetForm();
+    setServerError(false);
+  }, [resetForm, setServerError]);
+
   return (
     <>
       <section className="login">
@@ -15,7 +40,11 @@ function Login() {
             />
           </Link>
           <h1 className="login__title">Рады видеть!</h1>
-          <form className="login__form" name="login">
+          <form
+            className="login__form"
+            name="form"
+            onSubmit={handleSubmit}
+          >
             <label className="login__label" htmlFor="name">
               E-mail
             </label>
@@ -24,18 +53,20 @@ function Login() {
               id="email"
               name="email"
               type="email"
-              placeholder="pochta@yandex.ru"
+              placeholder="Введите email"
               autoComplete="off"
               minLength="2"
               maxLength="40"
+              value={values.email || ""}
+              onChange={handleChange}
               required
             />
-            <span className="login__span-error"></span>
+            <span className="login__span-error">{errors.email}</span>
             <label className="login__label" htmlFor="password">
               Пароль
             </label>
             <input
-              className="login__input login__input-error"
+              className="login__input"
               id="password"
               name="password"
               type="password"
@@ -43,13 +74,20 @@ function Login() {
               autoComplete="off"
               minLength="2"
               maxLength="40"
+              value={values.password || ""}
+              onChange={handleChange}
               required
             />
-            <span className="login__span-error">
-              Что-то пошло не так...
+            <span className="login__span-error">{errors.password}</span>
+            <span
+              className={`login__span-error-server ${
+                serverError ? "login__span-error-server_active" : ""
+              }`}
+            >
+              Неправильный логин или пароль! Попробуйте ещё раз
             </span>
             <button
-              className="login__btn"
+              className={`login__btn ${!isValid ? "login__btn_disabled" : ""}`}
               type="submit"
             >
               Войти
